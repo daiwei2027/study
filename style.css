@@ -1,20 +1,17 @@
-div.content
-{
+div.content {
   width: 100%;
 }
 
-div.nav
-{
+div.nav {
   width: 100%;
   float: left;
 }
 
-a.nav
-{
+a.nav {
   float: left;
 }
 
-th,td
-{
+th,
+td {
   border: 1px solid black;
 }

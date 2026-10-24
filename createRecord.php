@@ -36,19 +36,19 @@
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
-        
+
         $sql = 'SELECT count(*) FROM record';
-            $result = $conn->query($sql);
-            $row = $result->fetch_row();
+        $result = $conn->query($sql);
+        $row = $result->fetch_row();
+        $pages = 0;
+        if ($row[0] == 0) {
             $pages = 0;
-            if ($row[0] == 0) {
-                $pages = 0;
-            } else if ($row[0] % 10 == 0) {
-                $pages = $row[0] / 10;
-            } else {
-                $pages = (int) ($row[0] / 10 + 1);
-            }
-            $current = $pages;
+        } else if ($row[0] % 10 == 0) {
+            $pages = $row[0] / 10;
+        } else {
+            $pages = (int) ($row[0] / 10 + 1);
+        }
+        $current = $pages;
 
         $conn->close();
         header("Location: http://192.168.1.6/study/view.php?current=" . $current);

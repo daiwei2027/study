@@ -10,27 +10,27 @@
 
 <body>
 	<div id="content">
-	<?php
-	$servername = 'localhost';
-            $username = 'root';
-            $password = '@Passw0rd';
-            $dbname = 'study';
-            $id = $_GET["id"];
-            $current = $_GET["current"];
+		<?php
+		$servername = 'localhost';
+		$username = 'root';
+		$password = '@Passw0rd';
+		$dbname = 'study';
+		$id = $_GET["id"];
+		$current = $_GET["current"];
 
-            // 创建连接
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            // Check connection
-            if ($conn->connect_error) {
-                die('连接失败: ' . $conn->connect_error);
-            }
-            $sql = 'SELECT * FROM record WHERE id=' . $id;
-            $result = $conn->query($sql);
-            $row = $result->fetch_row();
-	?>
-		<form action="modifyRecord.php?id=<?php echo $id;?>&current=<?php echo $current;?>" method="post">
-			书名：<input type="text" name="book" value="<?php echo $row[1];?>"><br>
-			章节：<input type="text" name="chapter" value="<?php echo $row[2];?>"><br>
+		// 创建连接
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+			die('连接失败: ' . $conn->connect_error);
+		}
+		$sql = 'SELECT * FROM record WHERE id=' . $id;
+		$result = $conn->query($sql);
+		$row = $result->fetch_row();
+		?>
+		<form action="modifyRecord.php?id=<?php echo $id; ?>&current=<?php echo $current; ?>" method="post">
+			书名：<input type="text" name="book" value="<?php echo $row[1]; ?>"><br>
+			章节：<input type="text" name="chapter" value="<?php echo $row[2]; ?>"><br>
 			<input type="submit"><br>
 			<input type="reset">
 		</form>
