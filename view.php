@@ -58,6 +58,10 @@
         $result = $conn->query($sql);
         $row = $result->fetch_row();
         $pages = 0;
+        $current = 1;
+        if($_GET["current"]) {
+        	$current = $_GET["current"];
+        }
         if ($row[0] == 0) {
             $pages = 0;
         } else if ($row[0] % 10 == 0) {
@@ -66,11 +70,11 @@
             $pages = (int) ($row[0] / 10 + 1);
         }
         if ($current > 1) {
-            echo "<a class='nav' href='view.php?current=" . $current - 1 . "'>&lt;preview</a>";
+            echo "<a class='nav' href='view.php?current=" . $current - 1 . "'>&lt;previous</a>";
         }
         for ($i = 1; $i <= $pages; $i++) {
             if ($i == $current) {
-                echo "<a href='javascript:void(0);' style='color:gray;'>" . $i . "</a>";
+                echo "<a class='nav' href='javascript:void(0);' style='color:gray;'>" . $i . "</a>";
             } else {
                 echo "<a class='nav' href='view.php?current=" . $i . "'>" . $i . "</a>";
             }
